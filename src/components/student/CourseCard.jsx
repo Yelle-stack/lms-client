@@ -1,7 +1,12 @@
 import React from 'react'
 import { assets } from '../../assets/assets'
+import { useContext } from 'react'
+import { AppContext } from '../../context/AppContext'
 
 const CourseCard = ({course}) => {
+
+  const {currency} = useContext(AppContext)
+
   return (
     <div>
       <img src={course.courseThumbnail} alt="" />
@@ -16,7 +21,7 @@ const CourseCard = ({course}) => {
           </div>
           <p>22</p>
         </div>
-        <p>{(course.coursePrice - course.discount * course.coursePrice / 100).toFixed(2)}</p>
+        <p>{currency}{(course.coursePrice - course.discount * course.coursePrice / 100).toFixed(2)}</p>
       </div>
     </div>
   )
