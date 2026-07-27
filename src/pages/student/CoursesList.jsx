@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import CourseCard from '../../components/student/CourseCard'
 import React, { useContext, useEffect, useState } from 'react'
 import { assets } from '../../assets/assets'
+import Footer from '../../components/student/Footer'
 
 const CoursesList = () => {
 
@@ -51,6 +52,7 @@ const CoursesList = () => {
         {filteredCourse.map((course, index)=> <CourseCard key={index} course={course}/>)}
       </div>
     </div>
+    <Footer />
     </>
   )
 }
