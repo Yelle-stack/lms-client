@@ -40,6 +40,25 @@ export const AppContextProvider = (props)=>{
     }
 
     // Function to Calculate Course Duration
+    const calculateCourseDuration = (course)=>{
+        let time = 0
+
+        course.courseContent.map((chapter)=> chapter.chapterContent.map(
+            (lecture) => time += lecture.lectureDuration
+        ))
+        return humanizeDuration(time * 60 * 1000, {units: ["h", "m"]})
+    }
+
+    // Function calculate to No of Lectures in the course
+    const calculateNoOfLectures = (course)=>{
+       let totalLectures = 0;
+       course.courseContent.forEach(chapter => {
+         if(Array.isArray(chapter.chapterContent)){
+            totalLectures += chapter.chapterContent.length;
+         }
+       });
+       return totalLectures;
+    }
 
     useEffect(()=> {
       fetchAllCourses()
@@ -47,7 +66,7 @@ export const AppContextProvider = (props)=>{
 
     const value = {
       currency, allCourses, navigate, calculateRating,
-      isEducator, setIsEducator
+      isEducator, setIsEducator, calculateNoOfLectures, calculateCourseDuration, calculateChapterTime
     }
     
     return (

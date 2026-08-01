@@ -5,16 +5,13 @@ import { AppContext } from '../../context/AppContext'
 import Loading from '../../components/student/Loading'
 import { assets } from '../../assets/assets'
 
-
-
-
 const CourseDetails = () => {
 
    const {id} = useParams()
 
    const [courseData, setCourseData] = useState(null)
 
-   const {allCourses, calculateRating} = useContext(AppContext)
+   const {allCourses, calculateRating, calculateNoOfLectures, calculateCourseDuration, calculateChapterTime} = useContext(AppContext)
 
    const fetchCourseData = async ()=> {
     const findCourse = allCourses.find(course => course._id === id)
@@ -53,6 +50,15 @@ const CourseDetails = () => {
         </div>
 
         <p className='text-sm'>Course by <span className='text-blue-600 underline'>GreatStack</span></p>
+
+        <div className='pt-8 text-gray-800'>
+           <h2 className='text-xl font-semibold'>Course Structure</h2>
+           <div className='pt-5'>
+              {courseData.courseContent.map((chapter, index)=> (
+                <div></div>
+              ))}
+           </div>
+        </div>
 
        </div>
 
