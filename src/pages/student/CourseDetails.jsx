@@ -10,6 +10,7 @@ const CourseDetails = () => {
   const { id } = useParams()
 
   const [courseData, setCourseData] = useState(null)
+  const [openSections, setOpenSections] = useState({})
 
   const {
     allCourses,
@@ -25,6 +26,14 @@ const CourseDetails = () => {
   useEffect(() => {
     fetchCourseData()
   }, [allCourses, id])
+
+  const toggleSection = (index)=> {
+   setOpenSections((prev)=>(
+    {...prev,
+      [index]: !prev[index],
+    }
+   ))
+  }
 
   return courseData ? (
     <>
@@ -113,7 +122,7 @@ const CourseDetails = () => {
                 >
 
                   {/* Chapter header */}
-                  <div className='flex items-center justify-between px-4 py-3 cursor-pointer select-none'>
+                  <div className='flex items-center justify-between px-4 py-3 cursor-pointer select-none' onClick={()=> toggleSection(index)}>
 
                     <div className='flex items-center gap-2'>
 
@@ -137,7 +146,7 @@ const CourseDetails = () => {
                   </div>
 
                   {/* Lectures */}
-                  <div className='overflow-hidden transition-all duration-300 max-h-96'>
+                  <div className={`overflow-hidden transition-all duration-300 ${openSections[index] ? 'max-h-96' : 'max-h-0'}`}>
 
                     <ul className='list-disc md:pl-10 pl-4 pr-4 py-2 text-gray-600 border-t border-gray-300'>
 
@@ -145,7 +154,7 @@ const CourseDetails = () => {
 
                         <li
                           key={i}
-                          className='flex items-start justify-between py-2 px-4'
+                          className='flex items-start gap-2 py-1'
                         >
 
                           {/* Lecture information */}
@@ -166,7 +175,7 @@ const CourseDetails = () => {
                               <div className='flex items-center gap-3 text-xs text-gray-500'>
 
                                 {lecture.isPreviewFree && (
-                                  <p className='text-blue-600'>
+                                  <p className='text-blue-600 cursor-pointer'>
                                     Preview
                                   </p>
                                 )}
