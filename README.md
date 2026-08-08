@@ -134,4 +134,4 @@ This project was developed to practice building a complete React application wit
 
 ---
 
-**Built with ❤️ by Jelena Zekovic**
+**Built with ❤️ by Jelena Zeko**
