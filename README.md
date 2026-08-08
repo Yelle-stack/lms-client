@@ -1,8 +1,8 @@
 # 🎓 LMS – Learning Management System
 
-![image alt](https://github.com/Yelle-stack/lms-client/blob/0a194edf7c5430eea3450d768162ee58bd472331/lmsHome.png)
-
 A modern **Learning Management System (LMS)** built with **React, Vite, and Tailwind CSS**. This project provides separate interfaces for students and educators, allowing users to browse courses, access course content, track enrollments, and manage educational content.
+
+![image alt](https://github.com/Yelle-stack/lms-client/blob/0a194edf7c5430eea3450d768162ee58bd472331/lmsHome.png)
 
 ## ✨ Features
 
