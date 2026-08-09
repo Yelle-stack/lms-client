@@ -7,7 +7,10 @@ const MyEnrollments = () => {
       <table>
         <thead>
           <tr>
-            <th>Course</th>
+            <th className='px-4 py-3 font-semibold truncate'>Course</th>
+            <th className='px-4 py-3 font-semibold truncate'>Duration</th>
+            <th className='px-4 py-3 font-semibold truncate'>Completed</th>
+            <th className='px-4 py-3 font-semibold truncate'>Status</th>
           </tr>
         </thead>
       </table>
