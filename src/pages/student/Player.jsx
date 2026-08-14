@@ -3,12 +3,15 @@ import { useContext } from 'react'
 import { AppContext } from '../../context/AppContext'
 import { useParams } from 'react-router'
 import { useState } from 'react'
+import { useEffect } from 'react'
 
 const Player = () => {
 
   const {enrolledCourses, calculateChapterTime} = useContext(AppContext)
   const {courseId} = useParams()
   const [courseData, setCourseData] = useState(null)
+  const [openSections, setOpenSections] = useState({})
+  const [playerData, setPlayerData] = useState(null)
 
   const getCourseData = ()=> {
     enrolledCourses.map((course)=>{
@@ -17,6 +20,18 @@ const Player = () => {
       }
     })
   }
+
+  const toggleSection = (index)=> {
+   setOpenSections((prev)=>(
+    {...prev,
+      [index]: !prev[index],
+    }
+   ));
+  };
+
+  useEffect(()=>{
+    getCourseData()
+  }, [])
 
   return (
 <>
@@ -27,12 +42,11 @@ const Player = () => {
 
       <div className='pt-5'>
       
-                    {courseData.courseContent.map((chapter, index) => (
+                    { courseData && courseData.courseContent.map((chapter, index) => (
       
                       <div
                         key={index}
-                        className='border border-gray-300 bg-white mb-2 rounded'
-                      >
+                        className='border border-gray-300 bg-white mb-2 rounded'>
       
                         {/* Chapter header */}
                         <div className='flex items-center justify-between px-4 py-3 cursor-pointer select-none' onClick={()=> toggleSection(index)}>
