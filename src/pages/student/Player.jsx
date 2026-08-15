@@ -4,6 +4,8 @@ import { AppContext } from '../../context/AppContext'
 import { useParams } from 'react-router'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import { assets } from '../../assets/assets'
+import humanizeDuration from 'humanize-duration'
 
 const Player = () => {
 
@@ -31,7 +33,7 @@ const Player = () => {
 
   useEffect(()=>{
     getCourseData()
-  }, [])
+  }, [enrolledCourses])
 
   return (
 <>
@@ -88,7 +90,7 @@ const Player = () => {
                                 <div className='flex items-start gap-3'>
       
                                   <img
-                                    src={assets.play_icon}
+                                    src={false ? assets.blue_tick_icon : assets.play_icon}
                                     alt='play icon'
                                     className='w-4 h-4 mt-1'
                                   />
@@ -101,13 +103,13 @@ const Player = () => {
       
                                     <div className='flex items-center gap-3 text-xs text-gray-500'>
       
-                                      {lecture.isPreviewFree && (
+                                      {lecture.lectureUrl && (
                                         <p 
                                         onClick={()=> setPlayerData({
-                                          videoId: lecture.lectureUrl.split('/').pop()
+                                          ...lecture, chapter: index + 1, lecture: i + 1
                                         })}
                                         className='text-blue-500 cursor-pointer'>
-                                          Preview
+                                          Watch
                                         </p>
                                       )}
       
