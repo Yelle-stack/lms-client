@@ -148,7 +148,11 @@ const Player = () => {
      <div>
       {playerData ? (
         <div>
-          <YouTube videoId={playerData.videoId} opts={{playerVars: {autoplay: 1}}} iframeClassName='w-full aspect-video'/>
+          <YouTube videoId={playerData.lectureUrl.split('/').pop()} iframeClassName='w-full aspect-video'/>
+          <div>
+            <p>{playerData.chapter}.{playerData.lecture} {playerData.lectureTitle}</p>
+            <button>Mark Complete</button>
+          </div>
         </div>
       )
       : 
