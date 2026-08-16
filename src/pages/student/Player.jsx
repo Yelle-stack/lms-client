@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { assets } from '../../assets/assets'
 import humanizeDuration from 'humanize-duration'
+import YouTube from 'react-youtube'
 
 const Player = () => {
 
@@ -37,7 +38,7 @@ const Player = () => {
 
   return (
 <>
-    <div className='p-4 sm:p-10 flex flex-col-reverse md:grid-cols-2 gap-10 md:px-36'>
+    <div className='p-4 sm:p-10 grid grid-cols-1 md:grid-cols-2 gap-10 md:px-36'>
     {/* left column */}
      <div className='text-gray-800'>
       <h2 className='text-xl font-semibold'>Course Structure</h2>
@@ -144,7 +145,16 @@ const Player = () => {
      </div>
 
     {/* right column */}
-     <div></div>
+     <div>
+      {playerData ? (
+        <div>
+          <YouTube videoId={playerData.videoId} opts={{playerVars: {autoplay: 1}}} iframeClassName='w-full aspect-video'/>
+        </div>
+      )
+      : 
+      <img src={courseData ? courseData.courseThumbnail : ''} alt="" />
+      }
+     </div>
 
     </div>
 </>
