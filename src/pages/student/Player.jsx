@@ -7,6 +7,7 @@ import { useEffect } from 'react'
 import { assets } from '../../assets/assets'
 import humanizeDuration from 'humanize-duration'
 import YouTube from 'react-youtube'
+import Footer from '../../components/student/Footer'
 
 const Player = () => {
 
@@ -142,16 +143,21 @@ const Player = () => {
                     ))}
       
                   </div>
+
+                <div>
+                  <h1>Rate this Course:</h1>
+                </div>
+
      </div>
 
     {/* right column */}
-     <div>
+     <div className='md:mt-10'>
       {playerData ? (
         <div>
           <YouTube videoId={playerData.lectureUrl.split('/').pop()} iframeClassName='w-full aspect-video'/>
-          <div>
+          <div className='flex justify-between items-center mt-1'>
             <p>{playerData.chapter}.{playerData.lecture} {playerData.lectureTitle}</p>
-            <button>Mark Complete</button>
+            <button className='text-blue-600'>{false ? 'Completed' : 'Mark Complete'}</button>
           </div>
         </div>
       )
@@ -161,6 +167,7 @@ const Player = () => {
      </div>
 
     </div>
+    <Footer />
 </>
   )
 }
