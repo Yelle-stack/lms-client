@@ -1,11 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { dummyStudentEnrolled } from '../../assets/assets'
+import { useEffect } from 'react'
+import Loading from '../../components/student/Loading'
 
 const StudentsEnrollrd = () => {
-  return (
+
+  const [enrolledStudents, setEnrolledStudents] = useState(null)
+
+  const fetchEnrolledStudents = async () => {
+    setEnrolledStudents(dummyStudentEnrolled)
+  }
+  
+  useEffect(() => {
+    fetchEnrolledStudents()
+  }, [])
+
+  return enrolledStudents ? (
     <div>
-      <h1>Students Enrolled page</h1>
+      <div>
+        
+      </div>
     </div>
-  )
+  ) : <Loading />
 }
 
 export default StudentsEnrollrd
